@@ -19,7 +19,7 @@ render(
         <Route path={`/`} component={ App }>
           <IndexRoute component={ Cards } />
           {/*<Route path={`/search`} component={ SearchResults }></Route>*/}
-          <Route path="details" component={CardDescription}></Route>
+          <Route path="details/:id" component={CardDescription}></Route>
         </Route>
       </Router>
     </Provider>,

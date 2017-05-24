@@ -71,3 +71,10 @@ export function bookmark(id,status){
     }
 }
 
+export function activeCard(card){
+    return{
+        type:'ACTIVE_CARD',
+        card
+    }
+}
+

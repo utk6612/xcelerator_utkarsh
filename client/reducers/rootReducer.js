@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
-import {cardData,loading,likeCount,dislikeCount,bookmarkStatus} from './items';
+import {cardData,loading,likeCount,dislikeCount,bookmarkStatus, cardActive} from './items';
 
 var rootReducer= combineReducers({
     cardData,
     loading,
     likeCount,
     dislikeCount,
-    bookmarkStatus
+    bookmarkStatus,
+    cardActive
 });
 
 export default rootReducer;

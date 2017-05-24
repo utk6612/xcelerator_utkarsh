@@ -55,3 +55,12 @@ export function bookmarkStatus(state=new Map(),action){
             return state;    
     }    
 }
+
+export function cardActive(state={},action){
+    switch(action.type){
+        case 'ACTIVE_CARD':
+            return action.card;
+        default:
+            return state;
+    }
+}
