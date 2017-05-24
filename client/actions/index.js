@@ -46,3 +46,19 @@ export function getCards(url){
       }
 }
 
+export function like(id,count){
+    return{
+        type:'LIKE',
+        id,
+        count
+    }
+}
+
+export function dislike(id,count){
+    return{
+        type:'DISLIKE',
+        id,
+        count
+    }
+}
+

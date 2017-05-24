@@ -23,3 +23,23 @@ export function loading(state=true,action){
             return state;    
     }
 }
+
+export function likeCount(state=new Map(),action){
+    switch(action.type){
+        case 'LIKE':
+            state.set(action.id,{like:action.count});
+            return state;
+        default:
+            return state;    
+    }
+}
+
+export function dislikeCount(state=new Map(),action){
+    switch(action.type){
+        case 'DISLIKE':
+            state.set(action.id,{dislike:action.count});
+            return state;
+        default:
+            return state;    
+    }    
+}

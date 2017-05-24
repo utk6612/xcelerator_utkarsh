@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import {cardData,loading} from './items';
+import {cardData,loading,likeCount,dislikeCount} from './items';
 
 var rootReducer= combineReducers({
     cardData,
-    loading
+    loading,
+    likeCount,
+    dislikeCount
 });
 
 export default rootReducer;
