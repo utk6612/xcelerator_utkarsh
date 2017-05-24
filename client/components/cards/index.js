@@ -4,7 +4,7 @@ import CardDetails from '../../components/cards/cardDetails';
 
 class Cards extends React.Component{
     componentDidMount(){
-        this.props.getCards("https://api.myjson.com/bins/njgzd");
+        this.props.getCards("https://api.myjson.com/bins/9qfgp");
     }
     render(){
         var data;

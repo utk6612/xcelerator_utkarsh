@@ -41,15 +41,21 @@ class CardDetails extends React.Component {
     onMouseOut() {
         this.setState({ shadow: 1 });
     }
-    truncateText(str){
-        if(str.length <= 256)
-            return str;
-        else 
-            return str.slice(0,256)+"...";    
+    truncateText(str) {
+            return str.slice(0, 256) + "....";
     }
     render() {
-
-        var description=this.truncateText(this.props.card.body);
+        var description;
+        let flag;
+        if(this.props.card.body.length>256)
+        {
+            flag=1
+        description = this.truncateText(this.props.card.body);
+    }
+    else{
+        flag=0;
+        description=this.props.card.body;
+    }
 
 
         const styles = {
@@ -74,12 +80,18 @@ class CardDetails extends React.Component {
                     onClick={this.change.bind(this, 'bookmark')}
                     checked={this.state.bookmark ? true : false}
                 />
-                <img src={this.props.card.thumbnailUrl} alt="" width="100px" className="cardImg" />
-
-                <CardText expandable={false} className="col-md-8 col-xs-12 col-sm-8 pull-right">
+                <img src={this.props.card.thumbnailUrl} onClick={this.details.bind(this)} width="100px" className="cardImg" />
+                {(flag)?
+                <CardText expandable={false} onClick={this.details.bind(this)} className="col-md-8 col-xs-12 col-sm-8 pull-right">
                     {description}
+                    <a onClick={this.details.bind(this)}>Read More</a>
                 </CardText>
-                <CardActions className="col-xs-offset-8">
+                :
+                <CardText expandable={false} onClick={this.details.bind(this)} className="col-md-8 col-xs-12 col-sm-8 pull-right">
+                    {description}
+                </CardText>                
+                }
+                <CardActions className="col-md-offset-8 col-sm-offset-6 cardAction">
                     <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
                     <Badge
                         badgeContent={this.state.like}
