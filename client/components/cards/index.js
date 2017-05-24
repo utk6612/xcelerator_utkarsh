@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import CardDetails from '../../components/cards/cardDetails';
 
 class Cards extends React.Component{
     componentDidMount(){
@@ -10,7 +10,7 @@ class Cards extends React.Component{
         var data;
 
         data=this.props.cardData.map((item,index)=>{
-            return <h3>{item.id}</h3>
+            return <CardDetails card={item} key={Math.random()*index} {...this.props}></CardDetails>
         })
         return(
             <div>
