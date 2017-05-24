@@ -17,7 +17,8 @@ class CardDetails extends React.Component {
             shadow: 1
         }
     }
-    change(message) {
+    change(message,event) {
+        event.stopPropagation();
         if (message === "like") {
             this.props.like(this.props.card.id, this.state.like + 1);
             this.setState({ like: this.state.like + 1 });
@@ -35,10 +36,10 @@ class CardDetails extends React.Component {
         this.props.activeCard(this.props.card);
         hashHistory.push(`/details/${this.props.card.id}`);
     }
-    onMouseOver() {
-        this.setState({ shadow: 50 });
-    }
     onMouseOut() {
+        this.setState({ shadow: 900 });
+    }
+    onMouseOver() {
         this.setState({ shadow: 1 });
     }
     truncateText(str) {
@@ -64,10 +65,13 @@ class CardDetails extends React.Component {
             }
         };
         return (
+            <div>
             <Card
+                className="container"
                 onMouseOver={this.onMouseOver.bind(this)}
                 onMouseOut={this.onMouseOut.bind(this)}
-                zDepth={this.state.shadow}>
+                zDepth={this.state.shadow}
+                onClick={this.details.bind(this)}>
                 <CardHeader
                     onClick={this.details.bind(this)}
                     title={this.state.card.title}
@@ -80,9 +84,9 @@ class CardDetails extends React.Component {
                     onClick={this.change.bind(this, 'bookmark')}
                     checked={this.state.bookmark ? true : false}
                 />
-                <img src={this.props.card.thumbnailUrl} onClick={this.details.bind(this)} width="100px" className="cardImg" />
+                <img src={this.props.card.thumbnailUrl} width="100px" className="cardImg" />
                 {(flag)?
-                <CardText expandable={false} onClick={this.details.bind(this)} className="col-md-8 col-xs-12 col-sm-8 pull-right">
+                <CardText expandable={false} className="col-md-8 col-xs-12 col-sm-8 pull-right">
                     {description}
                     <a onClick={this.details.bind(this)}>Read More</a>
                 </CardText>
@@ -108,8 +112,10 @@ class CardDetails extends React.Component {
 
                 </CardActions>
 
-
-            </Card>)
+                
+            </Card>
+            <br/>
+            </div>)
     }
 }
 
