@@ -8,6 +8,8 @@ import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import Main from './components/Main.component';
 import Cards from './components/cards/index';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin()
 const store = configureStore();
 
 render(
