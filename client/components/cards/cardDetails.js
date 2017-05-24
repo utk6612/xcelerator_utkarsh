@@ -1,66 +1,87 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Badge from 'material-ui/Badge';
+import { hashHistory } from 'react-router';
+import Checkbox from 'material-ui/Checkbox';
 
-class CardDetails extends React.Component{
-    constructor(props){
+class CardDetails extends React.Component {
+    constructor(props) {
         super(props);
-        console.log("hello");
-        this.state={
-            card:this.props.card,
-            like:0,
-            dislike:0,
-            bookmark:false
+        this.state = {
+            card: this.props.card,
+            like: 0 | this.props.likeCount.get(this.props.card.id),
+            dislike: 0 | this.props.dislikeCount.get(this.props.card.id),
+            bookmark: false | this.props.bookmarkStatus.get(this.props.card.id)
         }
-        console.log("sdj");
     }
-    change(message){
-        if(message==="like")
-        {
-            this.setState({like:this.state.like+1});
+    change(message) {
+        if (message === "like") {
+            this.props.like(this.props.card.id, this.state.like + 1);
+            this.setState({ like: this.state.like + 1 });
         }
-        else if(message === 'dislike')
-        {
-            
-            this.setState({dislike:this.state.dislike+1});
-        }    
+        else if (message === 'dislike') {
+            this.props.dislike(this.props.card.id, this.state.dislike + 1);
+            this.setState({ dislike: this.state.dislike + 1 });
+        }
+        else if(message==='bookmark'){
+            this.props.bookmark(this.props.card.id, !this.state.bookmark);
+            this.setState({ bookmark:!this.state.bookmark });
+        }
+    }
+    details() {
+        hashHistory.push(`/details/`);
     }
 
-    render(){
-        console.log("hi");
-        return(
-        <Card onClick={this.details.bind(this)}>
-    <CardHeader
-      title={this.state.card.name}
-      subtitle="Subtitle"
-      actAsExpander={true}
-      showExpandableButton={false}
-    />
-    <CardActions>
-      <FlatButton label="Like" primary={true} onClick={this.change.bind(this,"like")} />
-          <Badge
-      badgeContent={this.state.like}
-      primary={true}
-    >
-    </Badge>
-      
-      <FlatButton label="Dislike" secondary={true} onClick={this.change.bind(this,"dislike")}/>
-          <Badge
-      badgeContent={this.state.dislike}
-      secondary={true}
-    >
-    </Badge>
-    </CardActions>
-    
-    <CardText expandable={false}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    render() {
+        const styles = {
+            checkbox: {
+                marginBottom: 16,
+            }
+        };
+        return (
+            <Card>
+                <CardHeader
+                    onClick={this.details.bind(this)}
+                    title={this.state.card.title}
+                    subtitle="Subtitle"
+                    actAsExpander={true}
+                    showExpandableButton={true}
+                />
+                <img src={this.props.card.thumbnailUrl} alt=""/>
+
+                <CardText expandable={false}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
       Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
       Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
     </CardText>
-  </Card>)
+                <CardActions>
+                    <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
+                    <Badge
+                        badgeContent={this.state.like}
+                        primary={true}
+                    >
+                    </Badge>
+
+                    <FlatButton label="Dislike" secondary={true} onClick={this.change.bind(this, "dislike")} />
+                    <Badge
+                        badgeContent={this.state.dislike}
+                        secondary={true}
+                    >
+                    </Badge>
+                    <Checkbox
+                        label="Bookmark"
+                        style={styles.checkbox}
+                        onClick={this.change.bind(this,'bookmark')}
+                        checked={this.state.bookmark?true:false}
+                    />
+
+                </CardActions>
+
+
+            </Card>)
     }
 }
 

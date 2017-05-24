@@ -62,3 +62,12 @@ export function dislike(id,count){
     }
 }
 
+export function bookmark(id,status){
+    console.log("bookmark");
+    return{
+        type:'BOOKMARK',
+        id,
+        status
+    }
+}
+

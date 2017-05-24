@@ -7,6 +7,7 @@ import App from './components/ItemList';
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import Main from './components/Main.component';
 import Cards from './components/cards/index';
+import CardDescription from './components/cardDescription/index';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin()
@@ -17,8 +18,8 @@ render(
       <Router history={hashHistory}>
         <Route path={`/`} component={ App }>
           <IndexRoute component={ Cards } />
-          {/*<Route path={`/search`} component={ SearchResults }></Route>
-          <Route path="details/:user/:repo" component={RepoDetails}></Route>*/}
+          {/*<Route path={`/search`} component={ SearchResults }></Route>*/}
+          <Route path="details" component={CardDescription}></Route>
         </Route>
       </Router>
     </Provider>,
