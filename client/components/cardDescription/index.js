@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import Badge from 'material-ui/Badge';
+import cookie from 'react-cookie';
 
 class CardDescription extends React.Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class CardDescription extends React.Component {
                 marginBottom: 16,
             }
         };
+
         return (
             <div className="container">
                 <h3>{this.props.cardActive.title}</h3>
@@ -57,7 +59,7 @@ class CardDescription extends React.Component {
                     <p className="cardDescription col-xs-12 col-sm-8">
                         {this.props.cardActive.body}
                     </p>
-                    <CardActions className="col-md-offset-7 cardAction">
+                    <CardActions className="col-md-offset-6 cardAction">
                         <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
                         <Badge
                             badgeContent={this.state.like}

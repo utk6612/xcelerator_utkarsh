@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Badge from 'material-ui/Badge';
 import { hashHistory } from 'react-router';
 import Checkbox from 'material-ui/Checkbox';
+import cookie from 'react-cookie';
 
 class CardDetails extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class CardDetails extends React.Component {
             shadow: 1
         }
     }
-    change(message,event) {
+    change(message, event) {
         event.stopPropagation();
         if (message === "like") {
             this.props.like(this.props.card.id, this.state.like + 1);
@@ -36,27 +37,26 @@ class CardDetails extends React.Component {
         this.props.activeCard(this.props.card);
         hashHistory.push(`/details/${this.props.card.id}`);
     }
-    onMouseOut() {
-        this.setState({ shadow: 900 });
-    }
     onMouseOver() {
+        this.setState({ shadow: 5 });
+    }
+    onMouseOut() {
         this.setState({ shadow: 1 });
     }
     truncateText(str) {
-            return str.slice(0, 256) + "....";
+        return str.slice(0, 256) + "....";
     }
     render() {
         var description;
         let flag;
-        if(this.props.card.body.length>256)
-        {
-            flag=1
-        description = this.truncateText(this.props.card.body);
-    }
-    else{
-        flag=0;
-        description=this.props.card.body;
-    }
+        if (this.props.card.body.length > 256) {
+            flag = 1
+            description = this.truncateText(this.props.card.body);
+        }
+        else {
+            flag = 0;
+            description = this.props.card.body;
+        }
 
 
         const styles = {
@@ -66,55 +66,54 @@ class CardDetails extends React.Component {
         };
         return (
             <div>
-            <Card
-                className="container"
-                onMouseOver={this.onMouseOver.bind(this)}
-                onMouseOut={this.onMouseOut.bind(this)}
-                zDepth={this.state.shadow}
-                onClick={this.details.bind(this)}>
-                <CardHeader
-                    onClick={this.details.bind(this)}
-                    title={this.state.card.title}
-                    actAsExpander={true}
-                    showExpandableButton={true}
-                />
-                <Checkbox
-                    label="Bookmark"
-                    style={styles.checkbox}
-                    onClick={this.change.bind(this, 'bookmark')}
-                    checked={this.state.bookmark ? true : false}
-                />
-                <img src={this.props.card.thumbnailUrl} width="100px" className="cardImg" />
-                {(flag)?
-                <CardText expandable={false} className="col-md-8 col-xs-12 col-sm-8 pull-right">
-                    {description}
-                    <a onClick={this.details.bind(this)}>Read More</a>
-                </CardText>
-                :
-                <CardText expandable={false} onClick={this.details.bind(this)} className="col-md-8 col-xs-12 col-sm-8 pull-right">
-                    {description}
-                </CardText>                
-                }
-                <CardActions className="col-md-offset-8 col-sm-offset-6 cardAction">
-                    <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
-                    <Badge
-                        badgeContent={this.state.like}
-                        primary={true}
-                    >
-                    </Badge>
+                <Card
+                    onMouseOver={this.onMouseOver.bind(this)}
+                    onMouseOut={this.onMouseOut.bind(this)}
+                    zDepth={this.state.shadow}
+                    onClick={this.details.bind(this)}>
+                    <CardHeader
+                        onClick={this.details.bind(this)}
+                        title={this.state.card.title}
+                        actAsExpander={true}
+                        showExpandableButton={true}
+                    />
+                    <Checkbox
+                        label="Bookmark"
+                        style={styles.checkbox}
+                        onClick={this.change.bind(this, 'bookmark')}
+                        checked={this.state.bookmark ? true : false}
+                    />
+                    <img src={this.props.card.thumbnailUrl} width="100px" className="cardImg" />
+                    {(flag) ?
+                        <CardText expandable={false} className="col-md-8 col-xs-12 col-sm-8 pull-right">
+                            {description}
+                            <a onClick={this.details.bind(this)}>Read More</a>
+                        </CardText>
+                        :
+                        <CardText expandable={false} onClick={this.details.bind(this)} className="col-md-8 col-xs-12 col-sm-8 pull-right">
+                            {description}
+                        </CardText>
+                    }
+                    <CardActions className="col-md-offset-8 col-sm-offset-6 cardAction">
+                        <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
+                        <Badge
+                            badgeContent={this.state.like}
+                            primary={true}
+                        >
+                        </Badge>
 
-                    <FlatButton label="Dislike" secondary={true} onClick={this.change.bind(this, "dislike")} />
-                    <Badge
-                        badgeContent={this.state.dislike}
-                        secondary={true}
-                    >
-                    </Badge>
+                        <FlatButton label="Dislike" secondary={true} onClick={this.change.bind(this, "dislike")} />
+                        <Badge
+                            badgeContent={this.state.dislike}
+                            secondary={true}
+                        >
+                        </Badge>
 
-                </CardActions>
+                    </CardActions>
 
-                
-            </Card>
-            <br/>
+
+                </Card>
+                <br />
             </div>)
     }
 }

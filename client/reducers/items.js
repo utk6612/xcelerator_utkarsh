@@ -27,7 +27,6 @@ export function loading(state=true,action){
 export function likeCount(state=new Map(),action){
     switch(action.type){
         case 'LIKE':
-            console.log("like");
             state.set(action.id,action.count);
             return state;
         default:
@@ -48,7 +47,6 @@ export function dislikeCount(state=new Map(),action){
 export function bookmarkStatus(state=new Map(),action){
         switch(action.type){
         case 'BOOKMARK':
-            console.log("book_red");
             state.set(action.id,action.status);
             return state;
         default:
