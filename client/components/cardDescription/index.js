@@ -57,7 +57,7 @@ class CardDescription extends React.Component {
                     <p className="cardDescription col-xs-12 col-sm-8">
                         {this.props.cardActive.body}
                     </p>
-                    <CardActions className="col-sm-offset-8 cardAction">
+                    <CardActions className="col-md-offset-7 cardAction">
                         <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
                         <Badge
                             badgeContent={this.state.like}
