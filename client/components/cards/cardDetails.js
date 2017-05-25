@@ -63,11 +63,23 @@ class CardDetails extends React.Component {
         const styles = {
             checkbox: {
                 marginBottom: 16,
+                marginLeft:15
+            },
+            card:{
+                overflow:'auto',
+                height:580,
+                position:'relative'
+            },
+            cardAction:{
+                marginTop:'15px',
+                position:'absolute',
+                bottom:'10px'
             }
         };
         return (
-            <div>
+            <div className="col-xs-12 col-sm-6 col-md-4">
                 <Card
+                    style={styles.card}
                     onMouseOver={this.onMouseOver.bind(this)}
                     onMouseOut={this.onMouseOut.bind(this)}
                     zDepth={this.state.shadow}
@@ -84,9 +96,9 @@ class CardDetails extends React.Component {
                         onClick={this.change.bind(this, 'bookmark')}
                         checked={this.state.bookmark ? true : false}
                     />
-                    <img src={this.props.card.thumbnailUrl} width="100px" className="cardImg" />
+                    <img src={this.props.card.thumbnailUrl} height="200px" className="cardImg col-xs-11" />
                     {(flag) ?
-                        <CardText expandable={false} className="col-md-8 col-xs-12 col-sm-8 pull-right">
+                        <CardText expandable={false} className="col-xs-12">
                             {description}
                             <a onClick={this.details.bind(this)}>Read More</a>
                         </CardText>
@@ -95,20 +107,23 @@ class CardDetails extends React.Component {
                             {description}
                         </CardText>
                     }
-                    <CardActions className="col-md-offset-8 col-sm-offset-6 cardAction">
+                    <CardActions style={styles.cardAction} className="cardAction">
+                        <span>
                         <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
                         <Badge
                             badgeContent={this.state.like}
                             primary={true}
                         >
                         </Badge>
-
+                        </span>
+                        <span>
                         <FlatButton label="Dislike" secondary={true} onClick={this.change.bind(this, "dislike")} />
                         <Badge
                             badgeContent={this.state.dislike}
                             secondary={true}
                         >
                         </Badge>
+                        </span>
 
                     </CardActions>
 
