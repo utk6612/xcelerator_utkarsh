@@ -6,10 +6,10 @@ import TextField from 'material-ui/TextField';
 import * as links from '../../config/index';
 
 class Cards extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
-            search:''
+        this.state = {
+            search: ''
         }
     }
     componentDidMount() {
@@ -23,9 +23,9 @@ class Cards extends React.Component {
             position: 'absolute',
             left: "45%",
             top: "40%",
-            search:{
-        width:'100%',
-        fontcolor:'black'
+            search: {
+                width: '100%',
+                fontcolor: 'black'
             }
         }
         var data;

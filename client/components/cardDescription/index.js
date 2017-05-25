@@ -39,7 +39,7 @@ class CardDescription extends React.Component {
             margin: 20,
             padding: 20,
             textAlign: 'center',
-            position:'relative',
+            position: 'relative',
             checkbox: {
                 marginBottom: 16,
             }
