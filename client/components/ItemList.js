@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { 
     getCards,deleteData,isLoading,like,dislike,bookmark,
-    activeCard
+    activeCard,addCard,addCardBackend
 } from '../actions/index';
 import Main from './Main.component';
 
@@ -25,7 +25,9 @@ const mapDispatchToProps = (dispatch) => {
             like:(id,count)=>dispatch(like(id,count)),
             dislike:(id,count)=>dispatch(dislike(id,count)),
             bookmark:(id,status)=>dispatch(bookmark(id,status)),
-            activeCard:(card)=>dispatch(activeCard(card))
+            activeCard:(card)=>dispatch(activeCard(card)),
+            addCard:(obj)=>dispatch(addCard(obj)),
+            addCardBackend:(url,obj)=>dispatch(addCardBackend(url,obj))
         };
     }
     var App=connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -77,4 +77,30 @@ export function activeCard(card){
         card
     }
 }
+export function addCard(obj){
+    return{
+        type:'ADD_CARD',
+        obj
+    }
+}
+
+export function addCardBackend(url,data){
+    console.log(data);
+    return (dispatch) => {
+             return axios({
+			url: url,
+			timeout: 20000,
+			method: 'post',
+            data,
+			responseType: 'json'
+		})
+			.then(function(response) {
+                console.log("posted");
+			})
+			.catch(function(response){
+				dispatch(itemsHasErrored(response.data));
+        })
+      }
+}
+
 

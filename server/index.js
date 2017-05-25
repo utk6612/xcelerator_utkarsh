@@ -25,7 +25,10 @@ app.get('/cardData', function (req, res) {
     res.json(data);
     res.end();
 });
-
+app.post('/addCard',function(req,res){
+    data.push(req.body);
+    //jsonfile.writeFileSync(file, data);
+})
 
 app.listen(3000, function () {
     console.log('Server listening on port 3000!');

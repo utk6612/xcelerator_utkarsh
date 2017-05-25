@@ -10,6 +10,8 @@ export function cardData(state=[],action){
         }
         case 'DELETE_DATA':
             return [];
+        case 'ADD_CARD':
+            return [...state,action.obj];    
         default:
             return state;    
     }
