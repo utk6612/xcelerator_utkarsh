@@ -26,7 +26,7 @@ app.get('/cardData', function (req, res) {
     res.end();
 });
 app.post('/addCard',function(req,res){
-    data.push(req.body);
+    data.unshift(req.body);
     //jsonfile.writeFileSync(file, data);
 })
 
