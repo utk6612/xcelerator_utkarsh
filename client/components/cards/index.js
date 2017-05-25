@@ -31,7 +31,7 @@ class Cards extends React.Component {
         var data;
         if (this.state.search) {
             data = this.props.cardData.map((item, index) => {
-                if (item.title.slice(0, this.state.search.length).toUpperCase().search(this.state.search.toUpperCase()) >= 0)
+                if (item.title.toUpperCase().search(this.state.search.toUpperCase()) >= 0)
                     return <CardDetails card={item} key={Math.random() * index} {...this.props}></CardDetails>
             })
         }
