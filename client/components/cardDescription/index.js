@@ -10,25 +10,27 @@ import cookie from 'react-cookie';
 class CardDescription extends React.Component {
     constructor(props) {
         super(props);
+        //var data=JSON.parse(localStorage.getItem("activeCard"));
+        var data= cookie.load('activeCard');
         this.state = {
-            card: this.props.cardActive,
-            like: 0 | this.props.likeCount.get(this.props.cardActive.id),
-            dislike: 0 | this.props.dislikeCount.get(this.props.cardActive.id),
-            bookmark: false | this.props.bookmarkStatus.get(this.props.cardActive.id)
+            card: data,
+            like: 0 | this.props.likeCount.get(data.id),
+            dislike: 0 | this.props.dislikeCount.get(data.id),
+            bookmark: false | this.props.bookmarkStatus.get(data.id)
         }
     }
 
     change(message) {
         if (message === "like") {
-            this.props.like(this.props.cardActive.id, this.state.like + 1);
+            this.props.like(this.state.card.id, this.state.like + 1);
             this.setState({ like: this.state.like + 1 });
         }
         else if (message === 'dislike') {
-            this.props.dislike(this.props.cardActive.id, this.state.dislike + 1);
+            this.props.dislike(this.state.card.id, this.state.dislike + 1);
             this.setState({ dislike: this.state.dislike + 1 });
         }
         else if (message === 'bookmark') {
-            this.props.bookmark(this.props.cardActive.id, !this.state.bookmark);
+            this.props.bookmark(this.state.card.id, !this.state.bookmark);
             this.setState({ bookmark: !this.state.bookmark });
         }
     }
@@ -47,7 +49,7 @@ class CardDescription extends React.Component {
 
         return (
             <div className="container">
-                <h3>{this.props.cardActive.title}</h3>
+                <h3>{this.state.card.title}</h3>
                 <Checkbox
                     label="Bookmark"
                     style={styles.checkbox}
@@ -55,9 +57,9 @@ class CardDescription extends React.Component {
                     checked={this.state.bookmark ? true : false}
                 />
                 <Paper style={styles} zDepth={5} rounded={false} className="col-xs-11" >
-                    <img src={this.props.cardActive.thumbnailUrl} width="150" height="250" className="col-xs-12 col-sm-4" alt="" />
+                    <img src={this.state.card.thumbnailUrl} width="150" height="250" className="col-xs-12 col-sm-4" alt="" />
                     <p className="cardDescription col-xs-12 col-sm-8">
-                        {this.props.cardActive.body}
+                        {this.state.card.body}
                     </p>
                     <CardActions className="col-md-offset-6 cardAction">
                         <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
