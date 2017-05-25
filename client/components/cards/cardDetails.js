@@ -74,6 +74,9 @@ class CardDetails extends React.Component {
                 marginTop:'15px',
                 position:'absolute',
                 bottom:'10px'
+            },
+            header:{
+                color:'red'
             }
         };
         return (
@@ -85,6 +88,7 @@ class CardDetails extends React.Component {
                     zDepth={this.state.shadow}
                     onClick={this.details.bind(this)}>
                     <CardHeader
+                        style={styles.header}
                         onClick={this.details.bind(this)}
                         title={this.state.card.title}
                         actAsExpander={true}

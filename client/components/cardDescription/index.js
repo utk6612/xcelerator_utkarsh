@@ -43,6 +43,9 @@ class CardDescription extends React.Component {
             position: 'relative',
             checkbox: {
                 marginBottom: 16,
+            },
+            cardAction:{
+                marginTop:'40%'
             }
         };
 
@@ -60,7 +63,7 @@ class CardDescription extends React.Component {
                     <p className="cardDescription col-xs-12 col-sm-8">
                         {this.state.card.body}
                     </p>
-                    <CardActions className="col-md-offset-6 cardAction">
+                    <CardActions className="col-md-offset-6 cardAction" style={styles.cardAction}>
                         <FlatButton label="Like" primary={true} onClick={this.change.bind(this, "like")} />
                         <Badge
                             badgeContent={this.state.like}
