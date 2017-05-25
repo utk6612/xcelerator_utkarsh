@@ -1,0 +1,8 @@
+
+# xcelerator_backend
+
+#Steps:
+1. npm install
+2. node index
+
+

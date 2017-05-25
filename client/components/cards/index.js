@@ -12,7 +12,7 @@ class Cards extends React.Component {
         }
     }
     componentDidMount() {
-        this.props.getCards("https://api.myjson.com/bins/9qfgp");
+        this.props.getCards("http://localhost:3000/cardData");
     }
     search(event) {
         this.setState({ search: event.target.value })
