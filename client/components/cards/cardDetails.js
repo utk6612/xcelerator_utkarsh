@@ -35,7 +35,6 @@ class CardDetails extends React.Component {
     }
     details() {
         this.props.activeCard(this.props.card);
-        //localStorage.setItem('activeCard',JSON.stringify(this.props.card));
         cookie.save('activeCard',this.props.card);
         hashHistory.push(`/details/${this.props.card.id}`);
     }

@@ -10,7 +10,6 @@ import cookie from 'react-cookie';
 class CardDescription extends React.Component {
     constructor(props) {
         super(props);
-        //var data=JSON.parse(localStorage.getItem("activeCard"));
         var data= cookie.load('activeCard');
         this.state = {
             card: data,
