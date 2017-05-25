@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import CardDetails from '../../components/cards/cardDetails';
 import CircularProgress from 'material-ui/CircularProgress';
 import TextField from 'material-ui/TextField';
+import * as links from '../../config/index';
 
 class Cards extends React.Component {
     constructor(props){
@@ -12,7 +13,7 @@ class Cards extends React.Component {
         }
     }
     componentDidMount() {
-        this.props.getCards("http://localhost:3000/cardData");
+        this.props.getCards(links.cardData);
     }
     search(event) {
         this.setState({ search: event.target.value })

@@ -1,0 +1,1 @@
+export var cardData = 'http://localhost:3000/cardData';
